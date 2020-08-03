@@ -38,7 +38,7 @@ function listar_personal_vista(valor,pagina){
 				cadena += "<tr >";
 				cadena += "<th style = 'text-align: center' hidden='true' >ID</th>";
 				cadena += "<th style = 'text-align: center'>NOMBRE Y APELLIDOS</th>";
-				cadena += "<th style = 'text-align: center'>DNI</th>";
+				cadena += "<th style = 'text-align: center'>RUN</th>";
 				cadena += "<th style = 'text-align: center'>SEXO</th>";
 				cadena += "<th style = 'text-align: center'>FECHA NACIMIENTO</th>";
 				cadena += "<th style = 'text-align: center'>PUESTO</th>";

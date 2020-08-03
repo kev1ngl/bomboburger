@@ -47,7 +47,7 @@
           <div class="col-md-3"><br>
             <input type="hidden" name="opcion" hidden id="txttipo">
             <!-- <label>C&oacute;digo Remitente</label> -->
-              <input value="2" type="hidden" id="txtidremitente" name="idremitente" readonly style="color: rgb(25,25,51); background-color: rgb(255,255,255);solid 5px;color:#9B0000; text-align:center;font-weight: bold;" class="form-control">
+              <input value="9" type="hidden" id="txtidremitente" name="idremitente" readonly style="color: rgb(25,25,51); background-color: rgb(255,255,255);solid 5px;color:#9B0000; text-align:center;font-weight: bold;" class="form-control">
           </div>
           <div class="col-md-5"><br>
             <!-- <label>Datos Remitente</label> -->

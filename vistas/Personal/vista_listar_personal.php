@@ -77,10 +77,14 @@
 	                          </div>
 	                          <input type="date" style="padding: 0px 12px;background-color: #FFFFFF;font-weight:bold;" id="txtfecha_modal"  class="form-control"  >
 	                        </div><br>
-	                    </div>
-	                    <div class="col-md-4">
+						</div>
+						<div class="col-md-4">
 	                        <label>Nro Documento</label>
 	                        <input type="text"  class="form-control"  onkeypress="return soloNumeros(event)" id="txtnrodocumento" style="width: 100%;" placeholder="Ingrese nro Documento" maxlength="8">
+	                    </div>
+	                    <div class="col-md-4">
+	                        <label>Contraseña</label>
+	                        <input type="text"  class="form-control"   style="width: 100%;" placeholder="Ingrese Contraseña" maxlength="8">
 	                    </div>
 	                    <div class="col-sm-4">
 	                        <label>Email</label>

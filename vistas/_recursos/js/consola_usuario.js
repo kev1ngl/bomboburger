@@ -16,7 +16,7 @@ function VerificarUsuario(){
 			if (resp==0) {
 				Limpiar_post_usuario();
 				var resultado="";
-				resultado = 'Usuario y/o contrase\u00f1a no Valido';
+				resultado = 'Usuario Desactivado';
 			    swal(resultado,"","warning");
 			}else{
 				 var data = JSON.parse(resp);

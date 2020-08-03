@@ -104,7 +104,7 @@
             <input type="text" id="txtdatosremitente" class="form-control"><br>
           </div>
           <div class="col-md-6">
-            <label>DNI</label>
+            <label>RUN</label>
             <input type="text" id="txtdniremitente" class="form-control">
           </div>
           <div class="col-md-6">

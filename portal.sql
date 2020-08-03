@@ -11,6 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Volcando estructura de base de datos para tramite
+CREATE DATABASE IF NOT EXISTS `tramite` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `tramite`;
+
 -- Volcando estructura para tabla tramite.area
 CREATE TABLE IF NOT EXISTS `area` (
   `area_cod` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Codigo auto-incrementado del movimiento del area',
@@ -24,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `area` (
 -- Volcando datos para la tabla tramite.area: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
 INSERT INTO `area` (`area_cod`, `area_nombre`, `area_fecha_registro`, `area_estado`) VALUES
-	(1, 'SECRETARIADO', '2018-11-21 04:54:25', 'ACTIVO'),
-	(2, 'DIRECCION', '2018-11-21 05:41:19', 'ACTIVO');
+	(1, 'SECRETARIADO', '2018-11-21 07:54:25', 'ACTIVO'),
+	(2, 'DIRECCION', '2018-11-21 08:41:19', 'ACTIVO');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tramite.ciudadano
@@ -48,10 +53,15 @@ CREATE TABLE IF NOT EXISTS `ciudadano` (
   KEY `cod_ciudona` (`ciud_nombres`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla tramite.ciudadano: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla tramite.ciudadano: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `ciudadano` DISABLE KEYS */;
 INSERT INTO `ciudadano` (`ciudadano_cod`, `ciud_nombres`, `ciud_apellidoPate`, `ciud_apellidoMate`, `ciud_dni`, `ciud_sexo`, `ciud_fechaNacimiento`, `ciud_direccion`, `ciud_telefono`, `ciud_movil`, `ciud_email`, `ciud_fecharegistro`, `ciud_estado`, `ciud_tipo`) VALUES
-	(9, 'YASMIN', 'YASMIN', 'YASMIN', '222', 'F', '2017-10-21', 'YASMIN', '23', '23', 'sdds', '2018-11-21 04:41:23', 'ACTIVO', 'NATURAL');
+	(4, 'PIERO', 'AVILA', 'MERCADO', '7334017', 'M', '2018-11-21', 'MI CASA', '222', '9292', 'sjjs@gmail.com', '2018-11-21 06:54:46', 'ACTIVO', 'JURIDICA'),
+	(5, 'MARIA', 'CORTES', 'MORGADO', '9817221', 'F', '2018-11-12', 'hgsghgshd', '894626', '2332', 'weew', '2018-11-21 07:10:04', 'ACTIVO', 'JURIDICA'),
+	(6, 'sdsd', 'sfsd', 'sdsd', '3232', 'M', '2016-12-22', 'sdas', '22', '3232', 'sdsd@gmail.com', '2018-11-21 07:11:24', 'ACTIVO', 'JURIDICA'),
+	(7, 'sdds', 'jwejewj', 'jjewj', '238328', 'M', '2018-11-12', 'jewjewj', '23', '32232323', 'sds', '2018-11-21 07:13:09', 'ACTIVO', 'JURIDICA'),
+	(8, 'jhhdf', 'jsjh', 'kjjhdsjh', '87238732', 'M', '2018-11-19', 'jhsjjhshjd', '434', '3443', 'sdsdds', '2018-11-21 07:15:21', 'ACTIVO', 'JURIDICA'),
+	(9, 'MARIA', 'CORTES', 'MORGADO', '9817224', 'F', '0000-00-00', 'YASMIN', '985469312', '23', 'sdds', '2018-11-21 07:41:23', 'ACTIVO', 'NATURAL');
 /*!40000 ALTER TABLE `ciudadano` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tramite.detalle_ciudadano
@@ -64,15 +74,13 @@ CREATE TABLE IF NOT EXISTS `detalle_ciudadano` (
   KEY `fd` (`documento_cod`),
   CONSTRAINT `detalle_ciudadano_ibfk_1` FOREIGN KEY (`ciudadano_cod`) REFERENCES `ciudadano` (`ciudadano_cod`),
   CONSTRAINT `detalle_ciudadano_ibfk_2` FOREIGN KEY (`documento_cod`) REFERENCES `documento` (`documento_cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Volcando datos para la tabla tramite.detalle_ciudadano: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla tramite.detalle_ciudadano: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_ciudadano` DISABLE KEYS */;
 INSERT INTO `detalle_ciudadano` (`detalleciudadano_cod`, `ciudadano_cod`, `documento_cod`) VALUES
 	(15, 9, 'DOC-000001'),
-	(16, 9, 'DOC-000002'),
-	(17, 9, 'DOC-000003'),
-	(18, 9, 'DOC-000004');
+	(16, 9, 'DOC-000002');
 /*!40000 ALTER TABLE `detalle_ciudadano` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tramite.detalle_institucion
@@ -111,16 +119,14 @@ CREATE TABLE IF NOT EXISTS `documento` (
   CONSTRAINT `documento_ibfk_3` FOREIGN KEY (`usu_cod`) REFERENCES `usuario` (`cod_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Entidad Documento';
 
--- Volcando datos para la tabla tramite.documento: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla tramite.documento: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `documento` DISABLE KEYS */;
 INSERT INTO `documento` (`documento_cod`, `doc_asunto`, `doc_fecha_recepcion`, `tipoDocumento_cod`, `area_cod`, `usu_cod`, `doc_estado`, `doc_tipo`, `doc_documento`) VALUES
-	('DOC-000001', 'CCC', '2018-11-25 05:58:48', 3, 2, 1, 'ACEPTADO', 'C', 'Archivo/5bfa64483dd0d-modelado.pdf'),
-	('DOC-000002', 'PROFORMAS', '2018-11-26 21:45:11', 3, 1, 1, 'ACEPTADO', 'C', 'Archivo/5bfc93978495c-modelado.pdf'),
-	('DOC-000003', 'FHFHF', '2020-08-02 20:06:55', 2, 2, 1, 'RECHAZADO', 'C', NULL),
-	('DOC-000004', '', '2020-08-02 20:09:55', 3, 2, 1, 'RECHAZADO', 'C', NULL),
-	('DOC-000005', 'FDSFS', '2020-08-02 21:37:50', 3, 2, 1, 'RECHAZADO', '', NULL),
-	('DOC-000006', 'RYRYRY', '2020-08-02 21:40:39', 2, 2, 1, 'ACEPTADO', '', NULL),
-	('DOC-000007', 'JHJHJHJK', '2020-08-02 22:21:35', 2, 2, 1, 'ACEPTADO', '', 'Archivo/5f2774af04090-Correo.txt');
+	('DOC-000001', 'CCC', '2018-11-25 08:58:48', 3, 2, 1, 'ACEPTADO', 'C', 'Archivo/5bfa64483dd0d-modelado.pdf'),
+	('DOC-000002', 'PROFORMAS', '2018-11-27 00:45:11', 3, 1, 1, 'ACEPTADO', 'C', 'Archivo/5bfc93978495c-modelado.pdf'),
+	('DOC-000003', 'YRYRY', '2020-08-03 06:15:14', 3, 2, 1, 'ACEPTADO', '', NULL),
+	('DOC-000004', 'VACACIONES ', '2020-08-03 07:21:15', 3, 2, 1, 'ACEPTADO', '', NULL),
+	('DOC-000005', 'SOLICITO UNA COPIA DE MI LIQUIDACIóN DE JULIO A MI CORREO.', '2020-08-03 07:34:52', 5, 2, 1, 'ACEPTADO', '', NULL);
 /*!40000 ALTER TABLE `documento` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tramite.institucion
@@ -302,22 +308,21 @@ DELIMITER ;
 
 -- Volcando estructura para procedimiento tramite.PA_REGISTRARDOCUMENTOARCHIVO
 DELIMITER //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_REGISTRARDOCUMENTOARCHIVO`(
-	IN `iddocumento` CHAR(13),
-	IN `idtipodocu` INT,
-	IN `idusuario` INT,
-	IN `archivo` VARCHAR(50),
-	IN `cont` INT
-
-)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_REGISTRARDOCUMENTOARCHIVO`(IN `iddocumento` CHAR(13), IN `asunto` VARCHAR(150), IN `idtipodocu` INT, IN `idarea` INT, IN `idremitente` INT, IN `idusuario` INT, IN `opcion` VARCHAR(10), IN `archivo` VARCHAR(350), IN `cont` INT)
 BEGIN
 IF cont = 0 THEN
-	INSERT INTO documento (documento_cod,tipoDocumento_cod,usu_cod) VALUES
-(iddocumento,idtipodocu,idusuario);
+	INSERT INTO documento (documento_cod,doc_asunto,tipoDocumento_cod,area_cod,usu_cod,doc_estado,doc_tipo) VALUES
+(iddocumento,asunto,idtipodocu,idarea,idusuario,'PENDIENTE',opcion);
 END IF;
 IF cont = 1 THEN
-	INSERT INTO documento (documento_cod,tipoDocumento_cod,usu_cod,doc_documento) VALUES
-(iddocumento,idtipodocu,idusuario,archivo);
+	INSERT INTO documento (documento_cod,doc_asunto,tipoDocumento_cod,area_cod,usu_cod,doc_estado,doc_tipo,doc_documento) VALUES
+(iddocumento,asunto,idtipodocu,idarea,idusuario,'PENDIENTE',opcion,archivo);
+END IF;
+IF opcion = 'C' THEN
+		INSERT INTO detalle_ciudadano (ciudadano_cod,documento_cod) VALUES (idremitente,iddocumento);
+END IF;
+IF opcion = 'I' THEN
+		INSERT INTO detalle_institucion(institucion_cod,documento_cod) VALUES (idremitente,iddocumento);
 END IF;
 END//
 DELIMITER ;
@@ -388,13 +393,14 @@ CREATE TABLE IF NOT EXISTS `personal` (
   KEY `cod_persona` (`pers_nombres`),
   KEY `personal_ibfk_1` (`usuario_cod`),
   CONSTRAINT `personal_ibfk_1` FOREIGN KEY (`usuario_cod`) REFERENCES `usuario` (`cod_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla tramite.personal: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `personal` DISABLE KEYS */;
 INSERT INTO `personal` (`personal_cod`, `pers_nombres`, `pers_apellidoPate`, `pers_apellidoMate`, `pers_dni`, `pers_sexo`, `pers_fechaNacimiento`, `pers_direccion`, `pers_telefono`, `pers_movil`, `pers_email`, `pers_fecharegistro`, `pers_estado`, `usuario_cod`, `pers_puesto`) VALUES
-	(9, 'JOSE', 'MENDOZA', 'MARAMBIO', '16308134', 'M', '2020-08-19', 'SANTANDER 458', '223454666', '399566558', 'sistemas.ssi@redsalud.gob.cl', '2020-08-02 18:31:06', 'ACTIVO', 11, 'GARZÓN'),
-	(10, 'KEVIN ', 'GALLEGUILLOS', 'LOPEZ', '19771479', 'M', '2020-08-07', 'FREIRE 702', '223454666', '85365353', 'bvg.lopez@gmail.com', '2020-08-02 21:05:42', 'ACTIVO', 12, 'ADMINISTRATIVO');
+	(1, 'KEVIN', 'GALLEGUILLOS', 'LÓPEZ', '19745354', 'M', '1998-06-18', 'FREIRE 702', '111111', '982255930', 'kevin@gmail.com', '2018-11-14 07:27:52', 'ACTIVO', 1, 'ADMINISTRATIVO'),
+	(8, 'JOSE', 'PERALTA', 'VARAS', '73340318', 'M', '1996-07-04', 'ALDUNATE 345', '982255930', '043506219', 'jose@gmail.com', '2018-11-23 11:22:20', 'ACTIVO', 10, 'GARZÓN'),
+	(9, 'MARIA', 'CORTES', 'MORGADO', '981221', 'F', '1990-01-31', 'CARRERA 20', '89456321', '854785621', 'MARIA@CORREO.COM', '2020-08-03 07:19:51', 'ACTIVO', 11, 'AYUDANTE DE COCINA');
 /*!40000 ALTER TABLE `personal` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tramite.tipo_documento
@@ -405,14 +411,17 @@ CREATE TABLE IF NOT EXISTS `tipo_documento` (
   PRIMARY KEY (`tipodocumento_cod`),
   UNIQUE KEY `IU_COD_TIPDOCUMENTO` (`tipodocumento_cod`) USING BTREE COMMENT 'EL CODIGO SERA UNICO',
   KEY `IX_NOMBRE` (`tipodo_descripcion`) USING BTREE COMMENT 'SE ORDENARA LOS DATOS POR LA DESCRIPCION'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Entidad Documento';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Entidad Documento';
 
 -- Volcando datos para la tabla tramite.tipo_documento: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipo_documento` DISABLE KEYS */;
 INSERT INTO `tipo_documento` (`tipodocumento_cod`, `tipodo_descripcion`, `tipodo_estado`) VALUES
-	(1, 'VACACIONES', 'ACTIVO'),
-	(2, 'PERMISO MEDICO', 'ACTIVO'),
-	(3, 'PERMISO', 'ACTIVO');
+	(1, 'PERMISO', 'INACTIVO'),
+	(2, 'PERMISO 1/2', 'INACTIVO'),
+	(3, 'VACACIONES', 'INACTIVO'),
+	(5, 'LIQUIDACIÓN', 'ACTIVO'),
+	(6, 'CONTRATO', 'ACTIVO'),
+	(7, 'ANEXO', 'ACTIVO');
 /*!40000 ALTER TABLE `tipo_documento` ENABLE KEYS */;
 
 -- Volcando estructura para tabla tramite.tipo_usuario
@@ -441,15 +450,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`cod_usuario`),
   KEY `cod_tipousuario` (`cod_tipousuario`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`cod_tipousuario`) REFERENCES `tipo_usuario` (`cod_tipousuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla tramite.usuario: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla tramite.usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`cod_usuario`, `usu_nombre`, `usu_clave`, `usu_estado`, `cod_tipousuario`, `usu_foto`) VALUES
-	(1, 'admin', 'admin123', 'ACTIVO', 1, 'Fotos/admin.png'),
-	(10, 'asistente', '1234567', 'ACTIVO', 2, 'Fotos/admin.png'),
-	(11, 'bryan.galleguillos', '16308134', 'ACTIVO', 2, 'Fotos/admin.png'),
-	(12, 'kevin.galleguillos', 'admin123', 'ACTIVO', 1, 'Fotos/admin.png');
+	(1, 'kevin.galleguillos', '123456', 'ACTIVO', 1, 'Fotos/admin.png'),
+	(10, 'jose.peralta', '123456', 'ACTIVO', 2, 'Fotos/admin.png'),
+	(11, 'maria.cortes', 'admin123', 'ACTIVO', 2, 'Fotos/admin.png');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

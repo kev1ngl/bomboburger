@@ -206,8 +206,7 @@ if (!isset($_SESSION['usuario'])) {
                     </a>
                   </li>
                 </ul>
-              </li>
-  
+              </li>         
             <?php }
             ?>
             <!-- <li>
